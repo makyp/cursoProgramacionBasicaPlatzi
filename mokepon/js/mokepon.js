@@ -5,6 +5,8 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 
 function iniciarjuego() {
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSeleccionarAtaque.style.display = 'none'
     let botonMascotaJugador = document.getElementById("boton-mascotas")
     botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
     let botonFuego = document.getElementById('boton-fuego')
@@ -15,6 +17,7 @@ function iniciarjuego() {
     botonTierra.addEventListener('click', ataqueTierra)
     let botonReiniciar = document.getElementById('boton-reiniciar')
     botonReiniciar.addEventListener('click', reiniciarJuego)
+    botonReiniciar.style.display = 'none'
     deshabilitarAtaques()
 }
 
@@ -42,8 +45,7 @@ function ataqueEnemigo() {
     } else {
         ataqueAleatorioEnemigo = 'Tierra'
     }
-    combate()
-    crearmensaje()
+    combate()  
 }
 
 function seleccionarMascotaJugador() {
@@ -72,7 +74,11 @@ function seleccionarMascotaJugador() {
         return
     }
     seleccionarMascotaEnemigo()
+    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+    sectionSeleccionarAtaque.style.display = 'block'
     habilitarAtaques()
+    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+    sectionSeleccionarMascota.style.display = 'none'
 }
 
 function seleccionarMascotaEnemigo() {
@@ -111,13 +117,15 @@ function combate() {
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
     }
-
+    crearmensaje()
     revisarVidas()
 }
 
 function revisarVidas() {
     if (vidasEnemigo == 0 || vidasJugador == 0) {
         deshabilitarAtaques()
+        let botonReiniciar = document.getElementById('boton-reiniciar')
+        botonReiniciar.style.display = 'block'
         if (vidasEnemigo == 0) {
             crearMensajeFinal("Ganaste el combate")
         } else {
@@ -135,7 +143,7 @@ function crearmensaje() {
 
 function crearMensajeFinal(resultadoFinal) {
     let sectionMensajes = document.getElementById('mensajes')
-    let parrafo = document.createElement('p')
+    let parrafo = document.createElement('h3')
     parrafo.innerHTML = resultadoFinal
     sectionMensajes.appendChild(parrafo)
 }
