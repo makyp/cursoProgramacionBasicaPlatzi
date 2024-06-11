@@ -49,26 +49,26 @@ function ataqueEnemigo() {
 }
 
 function seleccionarMascotaJugador() {
-    let inputHipodoge = document.getElementById('hipodoge')
-    let inputCapipepo = document.getElementById('capipepo')
-    let inputRatigueya = document.getElementById('ratigueya')
-    let inputLangostelvis = document.getElementById('langostelvis')
-    let inputTucapalma = document.getElementById('tucapalma')
-    let inputPydos = document.getElementById('pydos')
+    let inputNeon = document.getElementById('Neon')
+    let inputKilljoy = document.getElementById('Killjoy')
+    let inputRaze = document.getElementById('Raze')
+    let inputReyna = document.getElementById('Reyna')
+    let inputSage = document.getElementById('Sage')
+    let inputViper = document.getElementById('Viper')
     let spanMascotaJugador = document.getElementById('mascota-jugador')
 
-    if (inputHipodoge.checked) {
-        spanMascotaJugador.innerHTML = 'Hipodoge'
-    } else if (inputCapipepo.checked) {
-        spanMascotaJugador.innerHTML = 'Capipepo'
-    } else if (inputRatigueya.checked) {
-        spanMascotaJugador.innerHTML = 'Ratigueya'
-    } else if (inputLangostelvis.checked) {
-        spanMascotaJugador.innerHTML = 'Langostelvis'
-    } else if (inputTucapalma.checked) {
-        spanMascotaJugador.innerHTML = 'Tucapalma'
-    } else if (inputPydos.checked) {
-        spanMascotaJugador.innerHTML = 'Pydos'
+    if (inputNeon.checked) {
+        spanMascotaJugador.innerHTML = 'Neon'
+    } else if (inputKilljoy.checked) {
+        spanMascotaJugador.innerHTML = 'Killjoy'
+    } else if (inputRaze.checked) {
+        spanMascotaJugador.innerHTML = 'Raze'
+    } else if (inputReyna.checked) {
+        spanMascotaJugador.innerHTML = 'Reyna'
+    } else if (inputSage.checked) {
+        spanMascotaJugador.innerHTML = 'Sage'
+    } else if (inputViper.checked) {
+        spanMascotaJugador.innerHTML = 'Viper'
     } else {
         alert("No seleccionaste ninguna mascota")
         return
@@ -85,17 +85,17 @@ function seleccionarMascotaEnemigo() {
     let ataqueAleatorio = numeroAleatorio(1, 6)
     let spanMascotaEnemigo = document.getElementById('mascota-enemigo')
     if (ataqueAleatorio == 1) {
-        spanMascotaEnemigo.innerHTML = 'Hipodoge'
+        spanMascotaEnemigo.innerHTML = 'Neon'
     } else if (ataqueAleatorio == 2) {
-        spanMascotaEnemigo.innerHTML = 'Capipepo'
+        spanMascotaEnemigo.innerHTML = 'Killjoy'
     } else if (ataqueAleatorio == 3) {
-        spanMascotaEnemigo.innerHTML = 'Ratigueya'
+        spanMascotaEnemigo.innerHTML = 'Raze'
     } else if (ataqueAleatorio == 4) {
-        spanMascotaEnemigo.innerHTML = 'Langostelvis'
+        spanMascotaEnemigo.innerHTML = 'Reyna'
     } else if (ataqueAleatorio == 5) {
-        spanMascotaEnemigo.innerHTML = 'Tucapalma'
+        spanMascotaEnemigo.innerHTML = 'Sage'
     } else {
-        spanMascotaEnemigo.innerHTML = 'Pydos'
+        spanMascotaEnemigo.innerHTML = 'Viper'
     }
 }
 
