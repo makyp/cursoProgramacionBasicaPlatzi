@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOKEPON</title>
-    <script src="./js/mokepon.js"></script>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./styles.css">
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48;
+            font-size: 80px;
+        }
+    </style>
 </head>
+
 <body>
     <section id="seleccionar-mascota">
         <h1 class="titulo">Valito con elementos</h1>
@@ -53,21 +66,49 @@
     </section>
 
     <section id="seleccionar-ataque">
-        <h1 class="titulo">MOKEPON : 🔥 💧 🌱</h1>
-        <h2>Selecciona tu ataque:</h2>
-        <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
-        <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
-        <p>
-            <button id="boton-fuego">Fire 🔥</button>
-            <button id="boton-agua">Water 💧</button>
-            <button id="boton-tierra">Earth 🌱</button>
-        </p>
-    </section>
+        <h1 class="titulo">Valito con elementos</h1>
+        <h2 class="subtitulo">Selecciona tu ataque:</h2>
+        <div id="combate" class="combate-container">
+            <div id="mascota-seleccionada" class="mascota-container">
+                <img id="imagen-mascota-jugador" class="imagen-mascota" src="" alt="Mascota Seleccionada">
+                <p id="nombre-mascota-jugador"></p>
+            </div>
+            <h1 class="vs-text">VS</h1>
+            <div id="mascota-enemiga" class="mascota-container">
+                <img id="imagen-mascota-enemigo" class="imagen-mascota" src="" alt="Mascota Enemiga">
+                <p id="nombre-mascota-enemigo"></p>
+            </div>
+        </div>
 
-    <section id="mensajes"></section>
+        <div class="tarjetas-ataques">
+            <button id="boton-fuego" class="boton-ataques">Fire 🔥</button>
+            <button id="boton-agua" class="boton-ataques">Water 💧</button>
+            <button id="boton-tierra" class="boton-ataques">Earth 🌱</button>
+        </div>
+        <div id ="mensajes">
+            <div id="resultado">⭐ Mucha Suerte ⭐</div>
 
-    <section id="reiniciar">
-        <button id="boton-reiniciar">Reiniciar</button>
+            <section id="reiniciar">
+                <button id="boton-reiniciar"><span class="material-symbols-outlined">
+                    restart_alt
+                    </span></button>
+            </section>
+        </div>
+
+        <div class="ataques">
+            <div class="ataques-jugador">
+                <p id="vidas-jugador">3</p> 
+                <p id="mascota-jugador"></p>
+                <div id="ataques-del-jugador"></div>
+            </div>
+            <div class="ataques-enemigo">
+                <p id="vidas-enemigo">3</p> 
+                <p id="mascota-enemigo"></p>
+                <div id="ataques-del-enemigo"></div>
+
+            </div>
+        </div>
     </section>
+    <script src="./js/mokepon.js"></script>
 </body>
 </html>

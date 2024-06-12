@@ -5,7 +5,7 @@ body{
     background: linear-gradient(to right, rgb(183, 153, 255), rgb(172, 188, 255), rgb(174, 226, 255));
 }
 
-#seleccionar-mascota{
+#seleccionar-mascota, #seleccionar-ataque{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -18,7 +18,6 @@ body{
     font-style: unset;
     font-size: 64pt;
     margin-bottom: 0px;
-    
 }
 
 .subtitulo{
@@ -28,7 +27,7 @@ body{
 
 }
 
-.tarjeta{
+.tarjeta, .tarjetas-ataques{
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -81,4 +80,87 @@ input:checked + .tarjeta-mokepon {
 
 label.tarjeta-mokepon:hover {
     background-color: rgb(155, 159, 223);
+}
+
+.boton-ataques{
+    width: 220px;
+    height: 60px;
+    border-radius: 15px;
+    background-color: rgb(183, 153, 255);
+    border: 2px solid white;
+    color: #E6FFFD;
+    font-family: "Poppins", sans-serif;
+    font-size: 24pt;
+    margin-top: 25px;
+}
+
+button.boton-ataques:hover {
+    background-color: rgb(155, 159, 223);
+}
+
+#mensajes {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    font-size: 18pt;
+    flex-direction: column;
+    align-items: center;
+}
+
+#boton-reiniciar{
+    border : none;
+    color: rgb(117, 101, 255);
+    font-family: "Poppins", sans-serif;
+    background-color: transparent;
+}
+
+.ataques {
+    display: grid;
+    grid-template-columns: 100px 100px;
+}
+
+.ataques-jugador, .ataques-enemigo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mascota-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.imagen-mascota {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#combate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.vs-text {
+    font-size: 64px;
+    color: rgb(117, 101, 255);
+    margin: 0 20px;
+}
+
+#mascota-seleccionada, #mascota-enemiga {
+    text-align: center;
+}
+
+@media (max-width:360) {
+    .tarjeta, .tarjetas-ataques{
+        flex-direction: column;
+    }
 }
