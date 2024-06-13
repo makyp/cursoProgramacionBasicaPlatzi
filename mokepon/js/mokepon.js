@@ -1,122 +1,185 @@
-let ataqueJugador // Es una variable global
+const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+const botonMascotaJugador = document.getElementById("boton-mascotas")
+const botonFuego = document.getElementById('boton-fuego')
+const botonAgua = document.getElementById('boton-agua')
+const botonTierra = document.getElementById('boton-tierra')
+const botonReiniciar = document.getElementById('boton-reiniciar')
+const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+
+const inputNeon = document.getElementById('Neon')
+const inputKilljoy = document.getElementById('Killjoy')
+const inputRaze = document.getElementById('Raze')
+const inputReyna = document.getElementById('Reyna')
+const inputSage = document.getElementById('Sage')
+const inputViper = document.getElementById('Viper')
+
+const spanMascotaJugador = document.getElementById('mascota-jugador')
+const imagenMascotaJugador = document.getElementById('imagen-mascota-jugador')
+
+const spanMascotaEnemigo = document.getElementById('mascota-enemigo')
+const imagenMascotaEnemigo = document.getElementById('imagen-mascota-enemigo')
+
+const spanVidasJugador = document.getElementById('vidas-jugador')
+const spanVidasEnemigo = document.getElementById('vidas-enemigo')
+
+const sectionMensajes = document.getElementById("resultado");
+const ataquesDelJugador = document.getElementById("ataques-del-jugador");
+const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo");
+
+let ataqueJugador
 let ataqueAleatorioEnemigo
-let resultado
 let vidasJugador = 3
 let vidasEnemigo = 3
 
-const mascotas = [
-    { id: 'Neon', src: './assets/Neon.webp' },
-    { id: 'Killjoy', src: './assets/Killjoy.png' },
-    { id: 'Raze', src: './assets/Raze.webp' },
-    { id: 'Reyna', src: './assets/Reyna.webp' },
-    { id: 'Sage', src: './assets/Sage.webp' },
-    { id: 'Viper', src: './assets/Viper.png' }
-]
-
 function iniciarJuego() {
-    document.getElementById('seleccionar-ataque').style.display = 'none'
-    document.getElementById('boton-reiniciar').style.display = 'none'
-    document.getElementById("boton-mascotas").addEventListener("click", seleccionarMascotaJugador)
-    document.getElementById('boton-fuego').addEventListener('click', () => ataque('Fuego'))
-    document.getElementById('boton-agua').addEventListener('click', () => ataque('Agua'))
-    document.getElementById('boton-tierra').addEventListener('click', () => ataque('Tierra'))
-    document.getElementById('boton-reiniciar').addEventListener('click', reiniciarJuego)
-    
+    sectionSeleccionarAtaque.style.display = 'none'
+    botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
+    botonFuego.addEventListener('click', ataqueFuego)
+    botonAgua.addEventListener('click', ataqueAgua)
+    botonTierra.addEventListener('click', ataqueTierra)
+    botonReiniciar.addEventListener('click', reiniciarJuego)
+    botonReiniciar.style.display = 'none'
     deshabilitarAtaques()
 }
 
 function seleccionarMascotaJugador() {
-    const seleccionada = mascotas.find(m => document.getElementById(m.id).checked)
-    
-    if (!seleccionada) {
+    if (inputNeon.checked) {
+        spanMascotaJugador.innerHTML = 'Neon'
+        imagenMascotaJugador.src = './assets/Neon.webp'
+    } else if (inputKilljoy.checked) {
+        spanMascotaJugador.innerHTML = 'Killjoy'
+        imagenMascotaJugador.src = './assets/Killjoy.png'
+    } else if (inputRaze.checked) {
+        spanMascotaJugador.innerHTML = 'Raze'
+        imagenMascotaJugador.src = './assets/Raze.webp'
+    } else if (inputReyna.checked) {
+        spanMascotaJugador.innerHTML = 'Reyna'
+        imagenMascotaJugador.src = './assets/Reyna.webp'
+    } else if (inputSage.checked) {
+        spanMascotaJugador.innerHTML = 'Sage'
+        imagenMascotaJugador.src = './assets/Sage.webp'
+    } else if (inputViper.checked) {
+        spanMascotaJugador.innerHTML = 'Viper'
+        imagenMascotaJugador.src = './assets/Viper.png'
+    } else {
         alert("No seleccionaste ninguna mascota")
         return
     }
-    actualizarMascota('mascota-jugador', seleccionada)
     seleccionarMascotaEnemigo()
-     
-    document.getElementById('seleccionar-ataque').style.display = 'flex'
-    document.getElementById('seleccionar-mascota').style.display = 'none'
+    sectionSeleccionarAtaque.style.display = 'flex'
     habilitarAtaques()
+    sectionSeleccionarMascota.style.display = 'none'
 }
 
 function seleccionarMascotaEnemigo() {
-    const aleatorio = numeroAleatorio(0, mascotas.length - 1)
-    const seleccionada = mascotas[aleatorio]
-    actualizarMascota('mascota-enemigo', seleccionada)
+    let ataqueAleatorio = numeroAleatorio(1, 6)
+    if (ataqueAleatorio == 1) {
+        spanMascotaEnemigo.innerHTML = 'Neon'
+        imagenMascotaEnemigo.src = './assets/Neon.webp'
+    } else if (ataqueAleatorio == 2) {
+        spanMascotaEnemigo.innerHTML = 'Killjoy'
+        imagenMascotaEnemigo.src = './assets/Killjoy.png'
+    } else if (ataqueAleatorio == 3) {
+        spanMascotaEnemigo.innerHTML = 'Raze'
+        imagenMascotaEnemigo.src = './assets/Raze.webp'
+    } else if (ataqueAleatorio == 4) {
+        spanMascotaEnemigo.innerHTML = 'Reyna'
+        imagenMascotaEnemigo.src = './assets/Reyna.webp'
+    } else if (ataqueAleatorio == 5) {
+        spanMascotaEnemigo.innerHTML = 'Sage'
+        imagenMascotaEnemigo.src = './assets/Sage.webp'
+    } else {
+        spanMascotaEnemigo.innerHTML = 'Viper'
+        imagenMascotaEnemigo.src = './assets/Viper.png'
+    }
 }
 
-function actualizarMascota(tipo, mascota) {
-    document.getElementById(tipo).innerHTML = mascota.id
-    document.getElementById(`imagen-${tipo}`).src = mascota.src
-    document.getElementById(`nombre-${tipo}`).innerHTML = mascota.id
+function ataqueFuego() {
+    ataqueJugador = 'Fuego'
+    ataqueEnemigo()
 }
 
-function ataque(tipo) {
-    ataqueJugador = tipo
+function ataqueAgua() {
+    ataqueJugador = 'Agua'
+    ataqueEnemigo()
+}
+
+function ataqueTierra() {
+    ataqueJugador = 'Tierra'
     ataqueEnemigo()
 }
 
 function ataqueEnemigo() {
-    const ataques = ['Fuego', 'Agua', 'Tierra']
-    ataqueAleatorioEnemigo = ataques[numeroAleatorio(0, 2)]
-    combate()
-}
-
-function numeroAleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    let ataqueAleatorio = numeroAleatorio(1, 3)
+    if (ataqueAleatorio == 1) {
+        ataqueAleatorioEnemigo = 'Fuego'
+    } else if (ataqueAleatorio == 2) {
+        ataqueAleatorioEnemigo = 'Agua'
+    } else {
+        ataqueAleatorioEnemigo = 'Tierra'
+    }
+    combate()  
 }
 
 function combate() {
-    const spanVidasJugador = document.getElementById('vidas-jugador')
-    const spanVidasEnemigo = document.getElementById('vidas-enemigo')
-
-    if (ataqueJugador === ataqueAleatorioEnemigo) {
+    if (ataqueJugador == ataqueAleatorioEnemigo) {
         crearMensaje("¡EMPATE! 🤼")
-    } else if ((ataqueJugador === 'Agua' && ataqueAleatorioEnemigo === 'Fuego') || 
-               (ataqueJugador === 'Tierra' && ataqueAleatorioEnemigo === 'Agua') || 
-               (ataqueJugador === 'Fuego' && ataqueAleatorioEnemigo === 'Tierra')) {
+    } else if ((ataqueJugador == 'Agua' && ataqueAleatorioEnemigo == 'Fuego') || (ataqueJugador == 'Tierra' && ataqueAleatorioEnemigo == 'Agua') || (ataqueJugador == 'Fuego' && ataqueAleatorioEnemigo == 'Tierra')) {
         crearMensaje("¡GANASTE! 🥳")
-        spanVidasEnemigo.innerHTML = --vidasEnemigo
+        vidasEnemigo--
+        spanVidasEnemigo.innerHTML = vidasEnemigo
     } else {
         crearMensaje("PERDISTE... 😢")
-        spanVidasJugador.innerHTML = --vidasJugador
+        vidasJugador--
+        spanVidasJugador.innerHTML = vidasJugador
     }
     revisarVidas()
 }
 
 function revisarVidas() {
-    if (vidasEnemigo === 0 || vidasJugador === 0) {
+    if (vidasEnemigo == 0 || vidasJugador == 0) {
         deshabilitarAtaques()
-        document.getElementById('boton-reiniciar').style.display = 'flex'
-        crearMensajeFinal(vidasEnemigo === 0 ? "Ganaste el combate" : "Perdiste el combate")
+        botonReiniciar.style.display = 'flex'
+        if (vidasEnemigo == 0) {
+            crearMensajeFinal("Ganaste el combate")
+        } else {
+            crearMensajeFinal("Perdiste el combate")
+        }
     }
 }
 
 function crearMensaje(resultado) {
-    const sectionMensajes = document.getElementById("resultado")
-    const ataquesDelJugador = document.getElementById("ataques-del-jugador")
-    const ataquesDelEnemigo = document.getElementById("ataques-del-enemigo")
-
-    sectionMensajes.innerHTML = resultado
-    ataquesDelJugador.innerHTML += `<p>${ataqueJugador}</p>`
-    ataquesDelEnemigo.innerHTML += `<p>${ataqueAleatorioEnemigo}</p>`
+    let nuevoAtaqueDelJugador = document.createElement("p");
+    let nuevoAtaqueDelEnemigo = document.createElement("p");
+    sectionMensajes.innerHTML = resultado;
+    nuevoAtaqueDelJugador.innerHTML = ataqueJugador;
+    nuevoAtaqueDelEnemigo.innerHTML = ataqueAleatorioEnemigo;
+    ataquesDelJugador.appendChild(nuevoAtaqueDelJugador);
+    ataquesDelEnemigo.appendChild(nuevoAtaqueDelEnemigo);
 }
 
 function crearMensajeFinal(resultadoFinal) {
-    document.getElementById('resultado').innerHTML = resultadoFinal
+    sectionMensajes.innerHTML = resultadoFinal;
 }
 
 function habilitarAtaques() {
-    ['fuego', 'agua', 'tierra'].forEach(tipo => document.getElementById(`boton-${tipo}`).disabled = false)
+    document.getElementById('boton-fuego').disabled = false
+    document.getElementById('boton-agua').disabled = false
+    document.getElementById('boton-tierra').disabled = false
 }
 
 function deshabilitarAtaques() {
-    ['fuego', 'agua', 'tierra'].forEach(tipo => document.getElementById(`boton-${tipo}`).disabled = true)
+    document.getElementById('boton-fuego').disabled = true
+    document.getElementById('boton-agua').disabled = true
+    document.getElementById('boton-tierra').disabled = true
 }
 
 function reiniciarJuego() {
     location.reload()
+}
+
+function numeroAleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 window.addEventListener('load', iniciarJuego)
